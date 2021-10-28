@@ -33,9 +33,12 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+vector<int> solution(int a, int b)
 {
-    return a+b;
+    vector<int> answer(2);
+    answer[0]=a/b;
+    answer[1]=a%b;
+    return answer;
 }
 
 void generator_random(int datacnt)
@@ -48,7 +51,8 @@ void generator_random(int datacnt)
         int a=rand()%100+1;
         int b=rand()%100+1;
         osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b);
+        vector<int> answer=solution(a,b);
+        osans<<answer[0]<<" "<<answer[1]<<"\n";
         data+=1;
         osin.close();
         osans.close();
