@@ -19,6 +19,7 @@
 
 #define ff first
 #define ss second
+#define all(x) (x).begin(), (x).end()
 
 using namespace std;
 using pii=pair<int,int>;
