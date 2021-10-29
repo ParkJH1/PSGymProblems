@@ -1,0 +1,3 @@
+name: '가장 큰 수'
+limits:
+    memory: 256
