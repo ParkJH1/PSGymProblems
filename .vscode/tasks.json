@@ -42,6 +42,9 @@
             "type": "shell",
             "command": "${fileDirname}/${fileBasenameNoExtension}.out",
             "args": [],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true

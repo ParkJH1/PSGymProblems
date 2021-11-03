@@ -34,13 +34,9 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int n, int k)
+int solution(int a, int b)
 {
-    int answer=0;
-    for(int i=1; i<=n; i++){
-        if(i%k==0) answer+=i;
-    }
-    return answer;
+    return a+b;
 }
 
 void generator_random(int datacnt)
@@ -50,10 +46,10 @@ void generator_random(int datacnt)
         ofstream osin,osans;
         osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
         osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int n=rand()%100+1;
-        int k=rand()%9+2;
-        osin<<n<<" "<<k<<"\n";
-        osans<<solution(n,k)<<"\n";
+        int a=rand()%100+1;
+        int b=rand()%100+1;
+        osin<<a<<" "<<b<<"\n";
+        osans<<solution(a,b);
         data+=1;
         osin.close();
         osans.close();
