@@ -34,9 +34,10 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+string solution(int a, int b)
 {
-    return a+b;
+    if(a+b>=150) return "PASS";
+    return "FAIL";
 }
 
 void generator_random(int datacnt)
@@ -46,11 +47,18 @@ void generator_random(int datacnt)
         ofstream osin,osans;
         osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
         osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=rand()%100+1;
-        int b=rand()%100+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b);
-        data+=1;
+        int t=rand()%10+1;
+        osin<<t<<"\n";
+        bool flag=false;
+        while(t--){
+            int a=rand()%101;
+            int b=rand()%101;
+            osin<<a<<" "<<b<<"\n";
+            string answer=solution(a,b);
+            osans<<answer<<"\n";
+            if(answer=="PASS") flag=true;
+        }
+        if(flag) data+=1;
         osin.close();
         osans.close();
     }
