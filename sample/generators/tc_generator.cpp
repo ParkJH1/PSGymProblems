@@ -49,7 +49,7 @@ void generator_random(int datacnt)
         int a=rand()%100+1;
         int b=rand()%100+1;
         osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b);
+        osans<<solution(a,b)<<"\n";
         data+=1;
         osin.close();
         osans.close();
