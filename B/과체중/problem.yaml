@@ -1,0 +1,3 @@
+name: '과체중'
+limits:
+    memory: 256
