@@ -1,0 +1,3 @@
+name: '물건 구매'
+limits:
+    memory: 512
