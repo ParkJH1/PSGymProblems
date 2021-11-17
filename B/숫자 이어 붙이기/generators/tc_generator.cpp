@@ -34,9 +34,13 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+string solution(int n, vector<int> v)
 {
-    return a+b;
+    string answer="";
+    for(int i=0; i<n; i++){
+        answer+=to_string(v[i]);
+    }
+    return answer;
 }
 
 void generator_random(int datacnt)
@@ -46,10 +50,14 @@ void generator_random(int datacnt)
         ofstream osin,osans;
         osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
         osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=rand()%100+1;
-        int b=rand()%100+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b)<<"\n";
+        int n=rand()%10+1;
+        osin<<n<<"\n";
+        vector<int> v(n);
+        for(int i=0; i<n; i++){
+            v[i]=rand()%10000+1;
+            osin<<v[i]<<"\n";
+        }
+        osans<<solution(n,v)<<"\n";
         data+=1;
         osin.close();
         osans.close();
