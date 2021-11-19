@@ -27,7 +27,7 @@ int main()
             int sum=0;
             for(int j=0; j<n; j++) if(b[j]) sum+=v[j];
             if(sum==a) answer+=1;
-        }while(next_permutation(all(b)));
+        }while(next_permutation(b.begin(),b.end()));
     }
     cout<<answer;
     return 0;
