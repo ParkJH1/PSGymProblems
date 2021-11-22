@@ -16,16 +16,24 @@
 #include <tuple>
 #include <fstream>
 #include <unistd.h>
+#include <random>
+#include <chrono>
 
 #define ff first
 #define ss second
 #define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
 
 using namespace std;
 using pii=pair<int,int>;
 using ll=long long;
 
 string path="../data/";
+
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+ll myrand(ll B) {
+	return (unsigned long long)rng() % B;
+}
 
 string zeropad(int n, int d)
 {
