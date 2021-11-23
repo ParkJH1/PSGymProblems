@@ -54,8 +54,8 @@ void generator_random(int datacnt)
         ofstream osin,osans;
         osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
         osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=rand()%100+1;
-        int b=rand()%100+1;
+        int a=myrand(100)+1;
+        int b=myrand(100)+1;
         osin<<a<<" "<<b<<"\n";
         osans<<solution(a,b)<<"\n";
         data+=1;
@@ -66,7 +66,6 @@ void generator_random(int datacnt)
 
 int main()
 {
-    srand((unsigned)time(NULL));
     generator_random(10);
     return 0;
 }
