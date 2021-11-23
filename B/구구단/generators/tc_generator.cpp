@@ -47,26 +47,25 @@ int solution(int a, int b)
     return a+b;
 }
 
-void generator_random(int datacnt)
+void generator_allcase()
 {
     int data=1;
-    while(data<=datacnt){
-        ofstream osin,osans;
-        osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
-        osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=rand()%100+1;
-        int b=rand()%100+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b)<<"\n";
+    while(data<=9){
+        if(data!=2){
+            ofstream osin,osans;
+            osin.open(path+"secret/"+"allcase"+zeropad(data,2)+".in");
+            osans.open(path+"secret/"+"allcase"+zeropad(data,2)+".ans");
+            osin<<data<<"\n";
+            for(int i=1; i<=9; i++) osans<<data<<" x "<<i<<" = "<<data*i<<"\n";
+            osin.close();
+            osans.close();
+        }
         data+=1;
-        osin.close();
-        osans.close();
     }
 }
 
 int main()
 {
-    srand((unsigned)time(NULL));
-    generator_random(10);
+    generator_allcase();
     return 0;
 }

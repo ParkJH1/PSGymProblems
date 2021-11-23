@@ -1,0 +1,3 @@
+name: '소수 찾기'
+limits:
+    memory: 256
