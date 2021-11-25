@@ -42,9 +42,10 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+string solution(string s)
 {
-    return a+b;
+    reverse(all(s));
+    return s;
 }
 
 void generator_random(int datacnt)
@@ -54,10 +55,14 @@ void generator_random(int datacnt)
         ofstream osin,osans;
         osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
         osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=myrand(100)+1;
-        int b=myrand(100)+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b)<<"\n";
+        int n=myrand(100)+1;
+        string s;
+        for(int i=0; i<n; i++){
+            if(myrand(2)) s+='A'+myrand(26);
+            else s+='a'+myrand(26);
+        }
+        osin<<s<<"\n";
+        osans<<solution(s)<<"\n";
         data+=1;
         osin.close();
         osans.close();
