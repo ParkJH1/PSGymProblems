@@ -21,7 +21,7 @@ int main()
     else if(a+b+c>=80*3) cout<<'B';
     else if(a+b+c>=70*3) cout<<'C';
     else if(a+b+c>=60*3) cout<<'D';
-    cout<<'F';
+    else cout<<'F';
     return 0;
 }
 ```
