@@ -1,0 +1,3 @@
+name: '배열 재배치'
+limits:
+    memory: 512
