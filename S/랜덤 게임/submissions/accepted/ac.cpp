@@ -39,19 +39,21 @@ int main()
 
     int n;
     cin>>n;
-    vector<pair<string,int>> v(n);
+    vector<pair<string,pair<char,int>>> v(n);
     map<string,int> m;
     int mx=0;
     for(int i=0; i<n; i++){
-        cin>>v[i].ff>>v[i].ss;
+        cin>>v[i].ff>>v[i].ss.ff>>v[i].ss.ss;
         auto it=m.insert({v[i].ff,0}).ff;
-        it->ss+=v[i].ss;
+        if(v[i].ss.ff=='R') it->ss-=v[i].ss.ss;
+        else it->ss+=v[i].ss.ss;
     }
     for(auto it=m.begin(); it!=m.end(); it++) mx=max(mx,it->ss);
     map<string,int> m2;
     for(int i=0; i<n; i++){
         auto it=m2.insert({v[i].ff,0}).ff;
-        it->ss+=v[i].ss;
+        if(v[i].ss.ff=='R') it->ss-=v[i].ss.ss;
+        else it->ss+=v[i].ss.ss;
         if(it->ss>=mx && m[v[i].ff]==mx){
             cout<<it->ff;
             break;

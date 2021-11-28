@@ -42,22 +42,126 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+string solution(vector<pair<string,pair<char,int>>> v)
 {
-    return a+b;
+    int n=v.size();
+    map<string,int> m;
+    int mx=0;
+    for(int i=0; i<n; i++){
+        auto it=m.insert({v[i].ff,0}).ff;
+        if(v[i].ss.ff=='R') it->ss-=v[i].ss.ss;
+        else it->ss+=v[i].ss.ss;
+    }
+    for(auto it=m.begin(); it!=m.end(); it++) mx=max(mx,it->ss);
+    map<string,int> m2;
+    for(int i=0; i<n; i++){
+        auto it=m2.insert({v[i].ff,0}).ff;
+        if(v[i].ss.ff=='R') it->ss-=v[i].ss.ss;
+        else it->ss+=v[i].ss.ss;
+        if(it->ss>=mx && m[v[i].ff]==mx){
+            return it->ff;
+        }
+    }
+    assert(true);
+    return "";
 }
 
-void generator_random(int datacnt)
+void generator_random_small(int datacnt)
 {
     int data=1;
     while(data<=datacnt){
         ofstream osin,osans;
-        osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
-        osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=myrand(100)+1;
-        int b=myrand(100)+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b)<<"\n";
+        osin.open(path+"secret/"+"random_small"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_small"+zeropad(data,2)+".ans");
+        int n=myrand(100)+1;
+        int m=myrand(n)+1;
+        set<string> s;
+        vector<string> sss;
+        for(int i=0; i<m; i++){
+            string str;
+            int nn=myrand(19)+2;
+            for(int j=0; j<nn; j++) str+='a'+myrand(26);
+            if(!s.insert(str).ss) i-=1;
+            sss.push_back(str);
+        }
+        osin<<n<<"\n";
+        vector<pair<string,pair<char,int>>> v(n);
+        for(int i=0; i<n; i++){
+            v[i].ff=sss[myrand(m)];
+            if(myrand(2)) v[i].ss.ff='R';
+            else v[i].ss.ff='B';
+            v[i].ss.ss=myrand(100)+1;
+            osin<<v[i].ff<<" "<<v[i].ss.ff<<" "<<v[i].ss.ss<<"\n";
+        }
+        osans<<solution(v)<<"\n";
+        data+=1;
+        osin.close();
+        osans.close();
+    }
+}
+
+void generator_random_large(int datacnt)
+{
+    int data=1;
+    while(data<=datacnt){
+        ofstream osin,osans;
+        osin.open(path+"secret/"+"random_large"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_large"+zeropad(data,2)+".ans");
+        int n=myrand(100000)+1;
+        int m=myrand(n)+1;
+        set<string> s;
+        vector<string> sss;
+        for(int i=0; i<m; i++){
+            string str;
+            int nn=myrand(19)+2;
+            for(int j=0; j<nn; j++) str+='a'+myrand(26);
+            if(!s.insert(str).ss) i-=1;
+            sss.push_back(str);
+        }
+        osin<<n<<"\n";
+        vector<pair<string,pair<char,int>>> v(n);
+        for(int i=0; i<n; i++){
+            v[i].ff=sss[myrand(m)];
+            if(myrand(2)) v[i].ss.ff='R';
+            else v[i].ss.ff='B';
+            v[i].ss.ss=myrand(100)+1;
+            osin<<v[i].ff<<" "<<v[i].ss.ff<<" "<<v[i].ss.ss<<"\n";
+        }
+        osans<<solution(v)<<"\n";
+        data+=1;
+        osin.close();
+        osans.close();
+    }
+}
+
+void generator_random_maximum(int datacnt)
+{
+    int data=1;
+    while(data<=datacnt){
+        ofstream osin,osans;
+        osin.open(path+"secret/"+"random_maximum"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_maximum"+zeropad(data,2)+".ans");
+        int n=100000;
+        int m=myrand(n)+1;
+        set<string> s;
+        vector<string> sss;
+        for(int i=0; i<m; i++){
+            string str;
+            int nn=myrand(19)+2;
+            for(int j=0; j<nn; j++) str+='a'+myrand(26);
+            if(!s.insert(str).ss) i-=1;
+            sss.push_back(str);
+        }
+        osin<<n<<"\n";
+        vector<pair<string,pair<char,int>>> v(n);
+        for(int i=0; i<n; i++){
+            v[i].ff=sss[myrand(m)];
+            if(myrand(2)) v[i].ss.ff='R';
+            else v[i].ss.ff='B';
+            v[i].ss.ss=myrand(100)+1;
+            osin<<v[i].ff<<" "<<v[i].ss.ff<<" "<<v[i].ss.ss<<"\n";
+        }
+        osans<<solution(v)<<"\n";
         data+=1;
         osin.close();
         osans.close();
@@ -66,6 +170,8 @@ void generator_random(int datacnt)
 
 int main()
 {
-    generator_random(10);
+    generator_random_small(10);
+    generator_random_large(10);
+    generator_random_maximum(2);
     return 0;
 }
