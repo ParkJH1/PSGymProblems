@@ -21,7 +21,7 @@ int main()
     cin>>n;
     vector<vector<long long>> v(n,vector<long long>(n));
     vector<vector<long long>> dp(n,vector<long long>(n,LLONG_MAX));
-    vector<vector<char>> d(n,vector<char>(n));
+    vector<vector<char>> d(n,vector<char>(n,'-'));
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             cin>>v[i][j];
@@ -52,7 +52,7 @@ int main()
         if(ny==0 && nx==0) break;
         p+=d[ny][nx];
         if(d[ny][nx]=='R') nx-=1;
-        if(d[ny][nx]=='D') ny-=1;
+        else ny-=1;
     }
     reverse(p.begin(),p.end());
     cout<<p;
