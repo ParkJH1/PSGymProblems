@@ -42,39 +42,27 @@ string zeropad(int n, int d)
     return ret;
 }
 
-pair<ll,string> solution(vector<vector<int>> v)
+ll solution(vector<vector<int>> v)
 {
     int n=v.size();
     vector<vector<ll>> dp(n,vector<ll>(n,LLONG_MAX));
-    vector<vector<char>> d(n,vector<char>(n));
     dp[0][0]=0;
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
             if(i>0){
                 if(dp[i][j]>dp[i-1][j]){
                     dp[i][j]=dp[i-1][j];
-                    d[i][j]='D';
                 }
             }
             if(j>0){
                 if(dp[i][j]>dp[i][j-1]){
                     dp[i][j]=dp[i][j-1];
-                    d[i][j]='R';
                 }
             }
             dp[i][j]+=v[i][j];
         }
     }
-    string p;
-    int ny=n-1,nx=n-1;
-    while(true){
-        if(ny==0 && nx==0) break;
-        p+=d[ny][nx];
-        if(d[ny][nx]=='D') ny-=1;
-        else nx-=1;
-    }
-    reverse(all(p));
-    return {dp[n-1][n-1],p};
+    return dp[n-1][n-1];
 }
 
 void generator_random_small(int datacnt)
@@ -94,8 +82,7 @@ void generator_random_small(int datacnt)
             }
             osin<<"\n";
         }
-        pair<ll,string> answer=solution(v);
-        osans<<answer.ff<<"\n"<<answer.ss<<"\n";
+        osans<<solution(v)<<"\n";
         data+=1;
         osin.close();
         osans.close();
@@ -119,8 +106,7 @@ void generator_random_large(int datacnt)
             }
             osin<<"\n";
         }
-        pair<ll,string> answer=solution(v);
-        osans<<answer.ff<<"\n"<<answer.ss<<"\n";
+        osans<<solution(v)<<"\n";
         data+=1;
         osin.close();
         osans.close();
