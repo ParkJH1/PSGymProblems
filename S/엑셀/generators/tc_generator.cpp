@@ -80,8 +80,8 @@ void generator_random_small(int datacnt)
             osans<<"R"<<r<<"C"<<c<<"\n";
         }
         else{
-            osin<<int2str(c)<<r<<"\n";
             osin<<"R"<<r<<"C"<<c<<"\n";
+            osans<<int2str(c)<<r<<"\n";
         }
         data+=1;
         osin.close();
@@ -105,8 +105,8 @@ void generator_random_large(int datacnt)
             osans<<"R"<<r<<"C"<<c<<"\n";
         }
         else{
-            osin<<int2str(c)<<r<<"\n";
             osin<<"R"<<r<<"C"<<c<<"\n";
+            osans<<int2str(c)<<r<<"\n";
         }
         data+=1;
         osin.close();
@@ -132,8 +132,8 @@ void generator_random_special(int datacnt)
             osans<<"R"<<r<<"C"<<c<<"\n";
         }
         else{
-            osans<<int2str(c)<<r<<"\n";
             osin<<"R"<<r<<"C"<<c<<"\n";
+            osans<<int2str(c)<<r<<"\n";
         }
         data+=1;
         osin.close();
