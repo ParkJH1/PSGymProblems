@@ -42,22 +42,120 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+int solution(vector<vector<vector<int>>> v)
 {
-    return a+b;
+    int answer=0;
+    set<vector<int>> s;
+    for(int i=0; i<v.size(); i++){
+        for(int j=0; j<v[i].size(); j++){
+            s.insert(v[i][j]);
+        }
+    }
+    return s.size();
 }
 
-void generator_random(int datacnt)
+void generator_sample(int datacnt)
 {
     int data=1;
     while(data<=datacnt){
         ofstream osin,osans;
-        osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
-        osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=myrand(100)+1;
-        int b=myrand(100)+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b)<<"\n";
+        osin.open(path+"sample/"+"sample"+zeropad(data,2)+".in");
+        osans.open(path+"sample/"+"sample"+zeropad(data,2)+".ans");
+        int n=3;
+        int m=2;
+        osin<<n<<" "<<m<<"\n";
+        vector<vector<vector<int>>> v(n,vector<vector<int>>(m,vector<int>(3)));
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                for(int k=0; k<3; k++){
+                    v[i][j][k]=myrand(3);
+                    osin<<v[i][j][k]<<" ";
+                }
+            }
+            osin<<"\n";
+        }
+        osans<<solution(v)<<"\n";
+        data+=1;
+        osin.close();
+        osans.close();
+    }
+}
+
+void generator_random_small(int datacnt)
+{
+    int data=1;
+    while(data<=datacnt){
+        ofstream osin,osans;
+        osin.open(path+"secret/"+"random_small"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_small"+zeropad(data,2)+".ans");
+        int n=myrand(10)+1;
+        int m=myrand(10)+1;
+        osin<<n<<" "<<m<<"\n";
+        vector<vector<vector<int>>> v(n,vector<vector<int>>(m,vector<int>(3)));
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                for(int k=0; k<3; k++){
+                    v[i][j][k]=myrand(5);
+                    osin<<v[i][j][k]<<" ";
+                }
+            }
+            osin<<"\n";
+        }
+        osans<<solution(v)<<"\n";
+        data+=1;
+        osin.close();
+        osans.close();
+    }
+}
+
+void generator_random_large(int datacnt)
+{
+    int data=1;
+    while(data<=datacnt){
+        ofstream osin,osans;
+        osin.open(path+"secret/"+"random_large"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_large"+zeropad(data,2)+".ans");
+        int n=myrand(1000)+1;
+        int m=myrand(1000)+1;
+        osin<<n<<" "<<m<<"\n";
+        vector<vector<vector<int>>> v(n,vector<vector<int>>(m,vector<int>(3)));
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                for(int k=0; k<3; k++){
+                    v[i][j][k]=myrand(256);
+                    osin<<v[i][j][k]<<" ";
+                }
+            }
+            osin<<"\n";
+        }
+        osans<<solution(v)<<"\n";
+        data+=1;
+        osin.close();
+        osans.close();
+    }
+}
+
+void generator_random_maximum(int datacnt)
+{
+    int data=1;
+    while(data<=datacnt){
+        ofstream osin,osans;
+        osin.open(path+"secret/"+"random_maximum"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_maximum"+zeropad(data,2)+".ans");
+        int n=1000;
+        int m=1000;
+        osin<<n<<" "<<m<<"\n";
+        vector<vector<vector<int>>> v(n,vector<vector<int>>(m,vector<int>(3)));
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                for(int k=0; k<3; k++){
+                    v[i][j][k]=myrand(256);
+                    osin<<v[i][j][k]<<" ";
+                }
+            }
+            osin<<"\n";
+        }
+        osans<<solution(v)<<"\n";
         data+=1;
         osin.close();
         osans.close();
@@ -66,6 +164,9 @@ void generator_random(int datacnt)
 
 int main()
 {
-    generator_random(10);
+    // generator_sample(1);
+    generator_random_small(10);
+    generator_random_large(10);
+    generator_random_maximum(2);
     return 0;
 }
