@@ -10,7 +10,7 @@ int main()
     for(int i=0; i<n; i++){
         for(int j=0; j<m; j++){
             vector<int> v(3);
-            for(int k=0; k<3; k++) cin>>v[i];
+            for(int k=0; k<3; k++) cin>>v[k];
             s.insert(v);
         }
     }
