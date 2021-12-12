@@ -42,22 +42,27 @@ string zeropad(int n, int d)
     return ret;
 }
 
-int solution(int a, int b)
+int solution(int m, vector<pii> v)
 {
-    return a+b;
+    
 }
 
-void generator_random(int datacnt)
+void generator_random_small(int datacnt)
 {
     int data=1;
     while(data<=datacnt){
         ofstream osin,osans;
-        osin.open(path+"secret/"+"random"+zeropad(data,2)+".in");
-        osans.open(path+"secret/"+"random"+zeropad(data,2)+".ans");
-        int a=myrand(100)+1;
-        int b=myrand(100)+1;
-        osin<<a<<" "<<b<<"\n";
-        osans<<solution(a,b)<<"\n";
+        osin.open(path+"secret/"+"random_small"+zeropad(data,2)+".in");
+        osans.open(path+"secret/"+"random_small"+zeropad(data,2)+".ans");
+        int n=myrand(100)+1;
+        int m=myrand(100)+1;
+        osin<<n<<" "<<m<<"\n";
+        vector<pii> v(n);
+        for(int i=0; i<n; i++){
+            v[i]={myrand(2)+1,myrand(10000)+1};
+            osin<<v[i].ff<<" "<<v[i].ss<<"\n";
+        }
+        osans<<solution(m,v)<<"\n";
         data+=1;
         osin.close();
         osans.close();
