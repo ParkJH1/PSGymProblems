@@ -27,7 +27,7 @@ int main()
                     if(i>0) cnt-=dp[i-1][k2];
                     if(j>0) cnt-=dp[k1][j-1];
                     if(i>0 && j>0) cnt+=dp[i-1][j-1];
-                    if(cnt<=k) answer+=1;
+                    if(cnt==k) answer+=1;
                 }
             }
         }
