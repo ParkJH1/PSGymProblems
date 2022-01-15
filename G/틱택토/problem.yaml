@@ -1,0 +1,3 @@
+name: '틱택토'
+limits:
+    memory: 1024
